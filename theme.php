@@ -156,7 +156,8 @@ class simplusTheme extends Theme
 		}
 		else
 		if ($this->request->display_entries_by_tag && array_key_exists('tag', $this->matched_rule->named_arg_values)) {
-			$tag = (count($this->posts) > 0) ? $this->posts[0]->tags[$this->matched_rule->named_arg_values['tag']] : $this->matched_rule->named_arg_values['tag'] ;
+			//$tag = (count($this->posts) > 0) ? $this->posts[0]->tags[$this->matched_rule->named_arg_values['tag']] : $this->matched_rule->named_arg_values['tag'] ;
+			$tag = $this->matched_rule->named_arg_values['tag'];
 			$title= sprintf(_t('%1$s &raquo; Taxonomic Archives of %2$s'), htmlspecialchars($tag), Options::get('title'));
 		}
 		else
@@ -193,7 +194,8 @@ class simplusTheme extends Theme
 			$h1= '<h2 class="page-title">' . sprintf(_t('Posts written in %s'), $date_string) . '</h2>';
 		}
 		if ($this->request->display_entries_by_tag && array_key_exists('tag', $this->matched_rule->named_arg_values)) {
-			$tag = (count($this->posts) > 0) ? $this->posts[0]->tags[$this->matched_rule->named_arg_values['tag']] : $this->matched_rule->named_arg_values['tag'] ;
+			//$tag = (count($this->posts) > 0) ? $this->posts[0]->tags[$this->matched_rule->named_arg_values['tag']] : $this->matched_rule->named_arg_values['tag'] ;
+			$tag = $this->matched_rule->named_arg_values['tag'] ;
 			$h1 = '<h2 class="page-title">' . sprintf(_t('Posts tagged with %s'), htmlspecialchars($tag)) . '</h2>';
 		}
 /*
