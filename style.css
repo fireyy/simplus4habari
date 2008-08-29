@@ -10,14 +10,15 @@ AUTHOR URI: http://www.fireyy.com
 
 ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input {margin:0; padding:0}
 html,body{background:#FAFAF0;color: #2f2f2f;}
-body{font:12px/160% "Lucida Grande","Lucida Sans Unicode", helvetica, verdana, arial, sans-serif;}
+body{font:12px/160% 'Trebuchet MS', Verdana, Arial, sans-serif;}
 a {color: #92928c;}
 a:hover {color: #cc0000;}
 a img {border:none;}
 h1 {font-size:18px;margin:0 0 5px;}
-h2 {font-size:18px;color:#333;text-transform: capitalize;text-shadow: #cbcbc3 1px 1px 1px;}
-h3 {font-size:16px;color: #777;text-shadow: #cbcbc3 1px 1px 1px;}
-h4,h5,h6 {font-size:14px;color: #999;text-shadow: #cbcbc3 1px 1px 1px;}
+h2,h3,h4 {text-shadow: #cbcbc3 1px 1px 1px;}
+h2 {font-size:18px;color:#333;text-transform: capitalize;}
+h3 {font-size:16px;color: #777;}
+h4,h5,h6 {font-size:14px;color: #999;}
 p {margin: 0 0 10px;}
 ul {list-style: none;}
 code {padding: 1px 2px; font-family: Monaco,Consolas,"Andale Mono","BitStream Vera Sans Mono","Courier New",monospace;font-size: 12px;color: #cc0000;}
@@ -42,7 +43,7 @@ div#content {padding: 110px 0 0;}
 #footer {margin: 10px 0 0 0;width: 100%;padding: 25px 0 20px 0;overflow: hidden;background: #FAFAF0 url(i/footer_bg.gif) no-repeat center top;font-size: 10px;text-align: center;color: #a3a39d;}
 
 /* header */
-#header {top: 0;background: url(i/main_bg.png) no-repeat center bottom;padding: 0 0 20px;text-align: center;}
+#header {top: 0;background: url(i/main_bg.png) no-repeat center bottom;padding: 0 0 17px;text-align: center;}
 * html #header {background: #FAFAF0 url(i/main_bg.gif) no-repeat center bottom;position: relative;}
 #header h1 {padding-top: 10px;color: #fff;background: #A5141B url(i/logo_bg.jpg) no-repeat left bottom;width: 206px;height: 57px;margin: 0 auto;text-shadow: #64090D 1px 1px 1px;}
 #header h1 a {color: #fff;text-decoration: none;}
@@ -50,8 +51,9 @@ div#content {padding: 110px 0 0;}
 
 #menu {padding-top: 20px;}
 #menu ul li {padding: 0;display: inline;margin: 0 5px;}
-#menu ul li a {text-decoration: none;text-shadow: #cbcbc3 1px 1px 1px;}
-#menu ul li.current_page_item a,#menu ul li a:hover {color: #2f2f2f;font-weight: bold;}
+#menu ul li a {text-decoration: none;text-shadow: #cbcbc3 1px 1px 1px;display:-moz-inline-stack;display:inline-block;zoom:1;*display:inline;overflow:hidden;vertical-align: middle;_vertical-align:bottom;position:relative;*position:static;padding-bottom: 5px;}
+#menu ul li.current_page_item a,#menu ul li a:hover {color: #2f2f2f;background: url(i/menu_active.gif) no-repeat center bottom;}
+#menu ul li.current_page_item a {font-weight: bold;}
 
 #search {position: absolute;right: 0;top: 0;width: 200px;opacity: .99;z-index: 20;}
 #search fieldset {border: 0;background-color: #252525;}
@@ -69,7 +71,7 @@ div#content {padding: 110px 0 0;}
 .entry-type img {}
 .entry-date {color: #999;font-size: 12px;margin-right: 15px;padding-right: 10px;float: left;background: url(i/cal_bg.gif) no-repeat right center;text-align: center;}
 .entry-date span {display: block;}
-.entry-date .entry-day {font-size: 25px;padding-top: 5px;}
+.entry-date .entry-day {font-size: 25px;padding-top: 5px;line-height: 20px;}
 .entry-content {margin: 10px 0 0 60px;line-height: 180%;font-size: 13px;}
 .entry-content h2,.entry-content h3,.entry-content h4,.entry-content h5 {margin-bottom: 15px;}
 .entry-content p {text-indent: 2em;}
