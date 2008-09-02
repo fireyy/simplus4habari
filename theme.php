@@ -15,6 +15,17 @@ define( 'THEME_CLASS', 'simplusTheme' );
 class simplusTheme extends Theme
 {
 
+	private $class_name = '';
+	private $default_options = array(
+		'show_author' => false,
+		'home_tab' => 'Blog',
+		'show_entry_type_icon' => false,
+		'entry_type_link' => 'link',
+		'entry_type_quote' => 'quote',
+		'entry_type_photo' => 'photo',
+		'entry_type_video' => 'video'
+	);
+	
 	/**
 	 * Execute on theme init to apply these filters to output
 	 */
@@ -43,11 +54,58 @@ class simplusTheme extends Theme
 		//Format::apply_with_hook_params( 'more', 'post_content_out', 'more', 100, 1 );
 	}
 	
+	/**
+	 * On theme activation, set the default options
+	 */
+	public function action_theme_activation($file)
+	{
+		if (realpath($file) == __FILE__) {
+			$this->class_name = strtolower(get_class($this));
+			foreach ($this->default_options as $name => $value) {
+				$current_value = Options::get($this->class_name . '__' . $name);
+				if (is_null($current_value)) {
+					Options::set($this->class_name . '__' . $name, $value);
+				}
+			}
+		}
+	}
+
+	public function filter_theme_config($configurable)
+	{
+		$configurable = true;
+		return $configurable;
+	}
+
+	/**
+	 * Respond to the user selecting an action on the theme page
+	 **/
+	public function action_theme_ui($theme)
+	{
+		$ui = new FormUI(strtolower(get_class($this)));
+		
+		$ui->append('text', 'home_tab', 'option:' . $this->class_name . '__home_tab', _t('Link Text to Home'));
+		$ui->home_tab->add_validator('validate_required');
+		
+		$ui->append('checkbox', 'show_author', 'option:' . $this->class_name . '__show_author', _t('Display author in posts'));
+		$ui->append('checkbox', 'show_entry_type_icon', 'option:' . $this->class_name . '__show_entry_type_icon', _t('Display type icons for entry'));
+		$ui->append( 'static', 'show_entry_type_icon_instruction', _t( 'IF you\'d like display type icons for entry,you must fill out following fields by the tag name of entry.' ) );
+		$ui->append('text', 'entry_type_link', 'option:' . $this->class_name . '__entry_type_link', _t('Tag Name for entry type link'));
+		$ui->append('text', 'entry_type_quote', 'option:' . $this->class_name . '__entry_type_quote', _t('Tag Name for entry type quote'));
+		$ui->append('text', 'entry_type_photo', 'option:' . $this->class_name . '__entry_type_photo', _t('Tag Name for entry type photo'));
+		$ui->append('text', 'entry_type_video', 'option:' . $this->class_name . '__entry_type_video', _t('Tag Name for entry type video'));
+
+		// Save
+		$ui->append('submit', 'save', _t('Save'));
+		$ui->set_option('success_message', _t('Options saved'));
+		$ui->out();
+	}	
+	
 	public function add_template_vars()
 	{
 		//Theme Options
-		$this->assign( 'home_tab', 'Blog' ); //Set to whatever you want your first tab text to be.
-		$this->assign( 'show_author' , false ); //Display author in posts 
+		$this->assign( 'home_tab', Options::get($this->class_name . '__home_tab') ); //Set to whatever you want your first tab text to be.
+		$this->assign( 'show_author' , Options::get($this->class_name . '__show_author') ); //Display author in posts 
+		$this->assign( 'show_entry_type_icon' , Options::get($this->class_name . '__show_entry_type_icon') ); //Display type icons for entry
 		if( ! $this->assigned( 'pages' ) ) {
 			$this->assign( 'pages', Posts::get( array( 'content_type' => 'page', 'status' => Post::status('published'), 'nolimit' => 1 ) ) );
 		}
@@ -92,7 +150,7 @@ class simplusTheme extends Theme
 	
 	public function filter_post_tags_type( $tags )
 	{
-		$entry_type = array('entry','link','msg','photo','video');
+		$entry_type = array('entry',Options::get($this->class_name . '__entry_type_link'),Options::get($this->class_name . '__entry_type_msg'),Options::get($this->class_name . '__entry_type_photo'),Options::get($this->class_name . '__entry_type_video'));
 		$types = "entry";
 		if ( ! is_array( $tags ) )
 			$tags = array ( $tags );

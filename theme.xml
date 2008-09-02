@@ -2,7 +2,7 @@
 <theme>
 	<name>simplus</name>
 	<author>fireyy</author>
-	<url>http://www.fireyy.com/</url>
+	<url>http://fireyy.com</url>
 	<version>1.0</version>
 	<template_engine>rawphpengine</template_engine>
 	<description>simplus theme for Habari.</description>

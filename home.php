@@ -7,11 +7,15 @@
 		<?php $thistype = $post->tags_type; ?>
 		<h2 class="entry-title">
 			<?php $date= Utils::getdate( strtotime( $post->pubdate ) ); ?>
-			<span class="entry-date"><span class="entry-ym"><?php echo $date['mon0'].".".substr($date['year'], -2, 2); ?></span><span class="entry-day"><?php echo $date['mday0']; ?></span></span><span class="entry-type"><?php if($thistype=="entry"){
+			<span class="entry-date"><span class="entry-ym"><?php echo $date['mon0'].".".substr($date['year'], -2, 2); ?></span><span class="entry-day"><?php echo $date['mday0']; ?></span></span>
+		<?php if($show_entry_type_icon){ ?>
+		<span class="entry-type"><?php if($thistype=="entry"){
 			echo '<a href="/tags/">';
 		}else{
 			echo '<a href="/tag/'.$thistype.'">';
-		} ?><img src="<?php Site::out_url( 'theme' ); ?>/i/type/<?php echo $thistype; ?>.png" alt="<?php echo $thistype; ?>" /></a></span><a href="<?php echo $post->permalink; ?>" title="<?php echo $post->title; ?>"><?php echo $post->title_out; ?></a>
+		} ?><img src="<?php Site::out_url( 'theme' ); ?>/i/type/<?php echo $thistype; ?>.png" alt="<?php echo $thistype; ?>" /></a></span>
+		<?php } ?>
+		<a href="<?php echo $post->permalink; ?>" title="<?php echo $post->title; ?>"><?php echo $post->title_out; ?></a>
 		</h2>
 		<div class="entry-content">
 			<?php echo $post->content_out; ?>
