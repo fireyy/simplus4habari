@@ -3,7 +3,7 @@ THEME NAME: simplus
 VERSION: 1.0
 DESCRIPTION: simplus theme for habari.
 AUTHOR: fireyy
-AUTHOR URI: http://www.fireyy.com
+AUTHOR URI: http://fireyy.com
 */
 
 /* Global */
@@ -45,8 +45,8 @@ div#content {padding: 110px 0 0;}
 /* header */
 #header {top: 0;background: url(i/main_bg.png) no-repeat center bottom;padding: 0 0 17px;text-align: center;}
 * html #header {background: #FAFAF0 url(i/main_bg.gif) no-repeat center bottom;position: relative;}
-#header h1 {padding-top: 10px;color: #fff;background: #A5141B url(i/logo_bg.jpg) no-repeat left bottom;width: 206px;height: 57px;margin: 0 auto;text-shadow: #64090D 1px 1px 1px;}
-#header h1 a {color: #fff;text-decoration: none;}
+#header h1#blog-title {padding-top: 10px;color: #fff;background: #A5141B url(i/logo_bg.jpg) no-repeat left bottom;width: 206px;height: 57px;margin: 0 auto;text-shadow: #64090D 1px 1px 1px;}
+#header h1#blog-title a {color: #fff;text-decoration: none;}
 #blog-description {font-size: 11px;color: #64090D;margin-top: -30px;text-shadow: #64090D 0 0 2px;}
 
 #menu {padding-top: 20px;}
@@ -89,7 +89,6 @@ div#content {padding: 110px 0 0;}
 .entry-content ul.tag-cloud li {display: inline;background: none;}
 .entry-meta {margin-left: 60px;padding: 5px 0;}
 .related {margin:5px 0 0 0;padding:15px 10px 0;}
-.entry-meta .author {display: none;}
 
 .entry-related {clear: both;overflow: hidden;zoom: 1;padding: 20px 0;margin-top: 20px;border-top: 1px solid #c8c8c0;background-color: #f3f2e9;}
 .entry-related h3 {margin-bottom: 10px;}
@@ -108,11 +107,15 @@ body.page .entry-content,body.page .entry-meta {margin-left: 0;}
 .sidebar ul.xoxo h3 {padding: 0 0 10px 0;}
 .sidebar ul.xoxo li.widget {float: left;width: 170px;padding: 0 10px;}
 .sidebar ul.xoxo li ul li,.entry-content ul li,.entry-content dt {background: url(i/r-sign1.gif) no-repeat 0 5px;padding-left: 20px;}
-.sidebar ul.xoxo li ul li {background-position: 0 3px;}
+.sidebar ul.xoxo li ul li {background-position: 0 2px;}
 .sidebar .textwidget {padding: 5px 10px;}
 .sidebar ul.xoxo li ul.tag-cloud li {display: inline;background:none;padding: 0;margin:0 2px 5px 0;}
 .sidebar ul.xoxo li ul.tag-cloud li a {white-space: nowrap;}
 .sidebar ul.xoxo li ul.tag-cloud li em {color: #999;}
+
+#widget-recentcomments {width: 190px;}
+#widget-blogroll {width: 150px;}
+.comment-authors,.comment-authors a {color: #bbb;}
 
 /* Diagona Icons by Yusuke */
 span.commentsrsslink,span.commentsrsslink,span.author,span.comment-author,span.tag-links,span.comments-link,#comment-notes,span.edit-link {background: url(i/icon.png) no-repeat left top;padding-left: 15px;}
