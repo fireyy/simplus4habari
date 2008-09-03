@@ -1,7 +1,12 @@
 <?php $theme->display ('header'); ?>
 <div id="container">
 	<div id="content">
-	<?php $theme->mutiple_h1(); ?>
+	<?php if(isset($criteria)){
+		$theme->mutiple_h1(htmlspecialchars($criteria));
+	}else{
+		$theme->mutiple_h1("");
+	} ?>
+<?php if ( sizeof( $posts ) ){ ?>
 <?php foreach ( $posts as $post ) { ?>
      <div id="post-<?php echo $post->id; ?>" class="hentry entry <?php echo $post->statusname , ' ' ,$post->tags_class; ?>">
 		<?php $thistype = $post->tags_type; ?>
@@ -38,6 +43,13 @@
 	<div class="pagebar">
 		<?php $theme->prev_page_link(); ?> <?php $theme->page_selector( null, array( 'leftSide' => 4, 'rightSide' => 4 ) ); ?> <?php $theme->next_page_link(); ?>
 	</div>
+<?php }else{ ?>
+	<div class="hentry post error404">
+		<div class="entry-content">
+			<p><?php _e('The requested post was not found.'); ?></p>
+		</div>
+	</div>
+<?php } ?>
 	</div><!-- #content -->
 </div><!-- #container -->
 <?php $theme->display ('sidebar'); ?>

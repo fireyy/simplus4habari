@@ -98,8 +98,9 @@ div#content {padding: 110px 0 0;}
 
 /* paged */
 .page-title {padding: 0;margin: 10px 0 15px 0;text-align: center;text-shadow: #444 1px 1px 10px;}
-body.page .entry-title {text-align: center;}
-body.page .entry-content,body.page .entry-meta {margin-left: 0;}
+body.page .entry-title,body.four04 .entry-title {text-align: center;}
+body.page .entry-content,body.page .entry-meta,body.four04 .entry-content {margin-left: 0;}
+body.four04 .entry-content {text-align: center;}
 
 /* sidebar */
 .sidebar a {text-decoration: none;}
