@@ -1,6 +1,6 @@
 
 	<div id="footer">
-		<span id="generator-link"><?php Options::out('title'); _e(' is powered by'); ?> <a href="http://habariproject.org/" title="Habari">Habari</a> and <a href="http://fireyy.com/archives/simplus-theme-for-habari-175" title="simplus theme for Habari">simplus</a></span>
+		<span id="generator-link"><?php Options::out('title'); _e(' is powered by'); ?> <a href="http://habariproject.org/" title="Habari">Habari <?php echo Version::HABARI_VERSION; ?></a> and <a href="http://fireyy.com/archives/simplus-theme-for-habari-175" title="simplus theme for Habari">simplus</a></span>
 	</div><!-- #footer -->
 	</div>
 </div><!-- #wrapper .hfeed -->

@@ -123,22 +123,29 @@ class simplusTheme extends Theme
 		parent::add_template_vars();
 	}
 
+	/**
+	 * Returns an unordered list of all used Tags
+	 */
 	public function theme_show_tags ( $theme )
 	{
-		$sql="SELECT distinct t.tag_slug AS slug, t.tag_text AS text
-			FROM ". DB::table( 'tags' ) ." t
-			RIGHT JOIN ". DB::table( 'tag2post' ) ." tp
+		$sql="
+			SELECT t.tag_slug AS slug, t.tag_text AS text, count(tp.post_id) as ttl
+			FROM {tags} t
+			INNER JOIN {tag2post} tp
 			ON t.id=tp.tag_id
-			LEFT JOIN ". DB::table( 'posts' )." p
-			ON p.id=tp.post_id
-			WHERE p.status=2";
-		$result= DB::get_results( $sql );
-		$tags='';
-		foreach ($result as $tag){
-			$tags.= '<li><a href="' . '/tag/'.$tag->text. '" title="' . $tag->text .'" rel="tag" style="font-size: 125%;">' . $tag->text . '</a></li>'."\n";
-		}
+			INNER JOIN {posts} p
+			ON p.id=tp.post_id AND p.status = ?
+			GROUP BY t.tag_slug
+			ORDER BY t.tag_text
+		";
+		$tags= DB::get_results( $sql, array(Post::status('published')) );
 
-		return '<ul class="tag-cloud">' . $tags . '</ul>';
+		foreach ($tags as $index => $tag) {
+			$tags[$index]->url = URL::get( 'display_entries_by_tag', array( 'tag' => $tag->slug ) );
+		}
+		$theme->taglist = $tags;
+		
+		return $theme->fetch( 'taglist' );
 	}
 	
 	public function filter_post_tags_class( $tags )
@@ -240,7 +247,7 @@ class simplusTheme extends Theme
 		return $title;
 	}
 
-	public function theme_mutiple_h1($theme)
+	public function theme_mutiple_h1($theme,$criteria)
 	{
 		$h1= '';
 
@@ -256,11 +263,11 @@ class simplusTheme extends Theme
 			$tag = $this->matched_rule->named_arg_values['tag'] ;
 			$h1 = '<h2 class="page-title">' . sprintf(_t('Posts tagged with %s'), htmlspecialchars($tag)) . '</h2>';
 		}
-/*
-		if ($this->request->display_search && array_key_exists('criteria', $this->matched_rule->named_arg_values)) {
-			$h1 = '<h2 class="page-title">' . sprintf(_t('Search results for “%s”'), htmlspecialchars($this->matched_rule->named_arg_values['criteria'])) . '</h2>';
+
+		if ($this->request->display_search && isset($criteria)) {
+			$h1 = '<h2 class="page-title">' . sprintf(_t('Search results for “%s”'), $criteria) . '</h2>';
 		}
-*/
+
 		return $h1;
 	}
 
